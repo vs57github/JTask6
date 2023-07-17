@@ -1,0 +1,80 @@
+package JСеминары.JavaСеминар6ДЗ;
+
+import java.util.HashSet;
+import java.util.Objects;
+
+public class Cat {
+    private String name;
+    private int age;
+    private String ownerName;
+
+    public Cat(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void greet() {
+        System.out.println("Meow! My name is " + name + ". I am " + age + " years old. My owner is " + ownerName + ".");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cat)) return false;
+        Cat cat = (Cat) o;
+        return age == cat.age && Objects.equals(name, cat.name) && Objects.equals(ownerName, cat.ownerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, ownerName);
+    }
+}
+
+//Main//
+
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet&lt;Cat&gt; cats = new HashSet&lt;&gt;();
+
+        Cat cat1 = new Cat("Барсик", 3);
+        Cat cat2 = new Cat("Мурзик", 5);
+        Cat cat3 = new Cat("Барсик", 3); // Duplicate of cat1
+
+        cats.add(cat1);
+        cats.add(cat2);
+        cats.add(cat3);
+
+        System.out.println("Размер множества: " + cats.size());
+
+        for (Cat cat : cats) {
+            cat.greet();
+        }
+    }
+}
